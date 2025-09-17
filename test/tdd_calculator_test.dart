@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   final calculator = StringCalculator();
-  group("Test the calculation of adding numbers", () {
+  group("Valid inputs", () {
     test('Empty string returns 0', () {
       expect(calculator.add(""), equals(0));
     });
@@ -30,6 +30,30 @@ void main() {
 
     test('Custom delimiter |', () {
       expect(calculator.add("//|\n2|3|4"), equals(9));
+    });
+  });
+
+  group("Negative numbers", () {
+    test('Single negative number throws', () {
+      expect(
+        () => calculator.add("-1"),
+        throwsA(
+          predicate(
+            (e) => e.toString().contains("negative numbers not allowed: -1"),
+          ),
+        ),
+      );
+    });
+
+    test('Multiple negative numbers throw with all listed', () {
+      expect(
+        () => calculator.add("1,-2,3,-4"),
+        throwsA(
+          predicate(
+            (e) => e.toString().contains("negative numbers not allowed: -2,-4"),
+          ),
+        ),
+      );
     });
   });
 }
