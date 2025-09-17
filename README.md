@@ -1,2 +1,9 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Simple Calculator dart program with tests are added
+
+Run the command
+
+`dart run`
+
+To perform test run the command
+
+`dart test`
