@@ -56,4 +56,26 @@ void main() {
       );
     });
   });
+
+  group("wrong inputs", () {
+    test('Invalid non-numeric token throws FormatException', () {
+      expect(() => calculator.add("1,a,3"), throwsFormatException);
+    });
+
+    test('Empty token inside string throws FormatException', () {
+      expect(() => calculator.add("1,,2"), throwsFormatException);
+    });
+
+    test('Custom delimiter with invalid number', () {
+      expect(() => calculator.add("//;\n1;two"), throwsFormatException);
+    });
+
+    test('Custom delimiter with no numbers returns 0', () {
+      expect(calculator.add("//;\n"), equals(0));
+    });
+
+    test('Random invalid string throws FormatException', () {
+      expect(() => calculator.add("abc"), throwsFormatException);
+    });
+  });
 }
