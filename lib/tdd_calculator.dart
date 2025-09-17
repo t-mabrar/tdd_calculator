@@ -2,7 +2,7 @@ class StringCalculator {
   int add(String numbers) {
     if (numbers.isEmpty) return 0;
 
-    List<String> delimiters = [",", "\n", ""];
+    List<String> delimiters = ["", ",", "\n"];
     String numbersPart = numbers;
 
     // Custom delimiter check
